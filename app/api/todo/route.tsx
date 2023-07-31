@@ -2,12 +2,12 @@ import connectMongoDB from "@/libs/mongodb";
 import Todo from "@/models/todoSchema";
 import { NextResponse } from "next/server";
 
-export async function POST(request) {
+export async function POST(request:Request) {
   try {
 
-    const { title } = await request.json();
+    const { title,status } = await request.json();
     await connectMongoDB();
-    await Todo.create({ title });
+    await Todo.create({ title ,status});
     return NextResponse.json({ message: "Todo Created" }, { status: 201 });
 
   } catch (error) {

@@ -2,6 +2,7 @@ import mongoose, { Schema } from "mongoose";
 
 interface Todo {
   title: string;
+  status:boolean;
 }
 
 const todoSchema = new mongoose.Schema<Todo>(
@@ -9,7 +10,11 @@ const todoSchema = new mongoose.Schema<Todo>(
     title:{
       type:String,
       required:true,
-    }
+    },
+    status:{
+      type:Boolean,
+      default:false
+    },
   },
   { timestamps: true }
 );
