@@ -1,11 +1,11 @@
 import mongoose, { Schema } from "mongoose";
 
-interface Todo {
+interface Todos {
   title: string;
   status:boolean;
 }
 
-const todoSchema = new mongoose.Schema<Todo>(
+const todoSchema = new mongoose.Schema<Todos>(
   {
     title:{
       type:String,

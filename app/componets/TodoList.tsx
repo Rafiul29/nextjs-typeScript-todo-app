@@ -3,27 +3,29 @@ import { useEffect, useState } from "react";
 import Loading from "./Loading";
 import Error from "./Error";
 import TodoItem from "./TodoItem";
+import { useRouter } from "next/navigation";
 
 const TodoList = () => {
   const [todos,setTodos]=useState([])
-  const [isLoading,setIsLoading]=useState(false);
-  const [isError,setIsError]=useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const router = useRouter();
 
   const getAllTodo=async()=>{
     try{
-      setIsLoading(true)
-      const res=await fetch('/api/todo');
-      if(!res.ok){
-        setIsError("there was a server side error")
+      setLoading(true);
+      const res=await fetch('/api/todos');
+      if(res.ok){
+        router.push("/");
       } 
       const data= await res.json();
       setTodos(data)
-      setIsLoading(false)
+      setLoading(false);
      
     }catch(error){
-      console.log(error)
-      setIsLoading(false)
-      setIsError("There was an server side error")
+      setError('Error fetching user data');
+      setLoading(false);
     }
    
   }
@@ -33,19 +35,19 @@ const TodoList = () => {
 
   // decide what to render
   let content=null
-  if(isLoading){
-    content=<Loading />
+  if (loading) {
+    content="Loading"
   }
 
-  if( isError){
-    content=<Error/>
+  if (error) {
+    content={error}
   }
 
-  if(!isLoading && !isError && todos?.length===0){
-    content=<Error/>
+  if(!loading && !error && todos?.length===0){
+    content="Todos Not Found"
   }
 
-  if(!isLoading && !isError && todos?.length>0){
+  if(!loading && !error && todos?.length>0){
     content=todos.map((todo:any)=><TodoItem key={todo._id} todo={todo}/>)
   }
 

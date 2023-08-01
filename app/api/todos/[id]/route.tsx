@@ -16,7 +16,7 @@ export async function GET(request: Request, { params }: { params: any }) {
     
     await connectMongoDB();
     const todo = await Todo.findById(id);
-    return NextResponse.json({ todo }, { status: 200 });
+    return NextResponse.json(todo);
 
   } catch (error) {
     return NextResponse.json(

@@ -5,7 +5,7 @@ const connectMongoDB=()=>{
     mongoose.connect(process.env.MONGO_URI as string)
     console.log("connected to MongoDB")
   }catch(error){
-    console.log("connected to MongoDB")
+    console.log("Not connected to MongoDB")
   }
 }
 
