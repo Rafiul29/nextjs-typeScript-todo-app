@@ -1,9 +1,11 @@
+import AddTodo from './componets/AddTodo'
 import TodoList from './componets/TodoList'
 import variables from './scss/variables.module.scss'
 
 const HomePage = () => {
   return (
-    <div  className={variables.title}>
+    <div >
+      <AddTodo/>
       <TodoList/>
     </div>
   )

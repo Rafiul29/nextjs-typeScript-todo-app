@@ -11,16 +11,18 @@ const TodoList = () => {
 
   const getAllTodo=async()=>{
     try{
+      setIsLoading(true)
       const res=await fetch('/api/todo');
       if(!res.ok){
-        // throw new Error("Someting went wrong" as string)
+        setIsError("there was a server side error")
       } 
       const data= await res.json();
       setTodos(data)
       setIsLoading(false)
-      setIsError("")
+     
     }catch(error){
-      setIsLoading(true)
+      console.log(error)
+      setIsLoading(false)
       setIsError("There was an server side error")
     }
    
@@ -32,14 +34,14 @@ const TodoList = () => {
   // decide what to render
   let content=null
   if(isLoading){
-    content=<Loading/>
+    content=<Loading />
   }
 
-  if(!isLoading && isError){
+  if( isError){
     content=<Error/>
   }
 
-  if(isLoading && isError && todos.length===0){
+  if(!isLoading && !isError && todos?.length===0){
     content=<Error/>
   }
 
