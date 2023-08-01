@@ -2,6 +2,7 @@ import connectMongoDB from "@/libs/mongodb";
 import Todo from "@/models/todoSchema";
 import { NextResponse } from "next/server";
 
+// post a new todo
 export async function POST(request:Request) {
   try {
 
@@ -18,6 +19,7 @@ export async function POST(request:Request) {
   }
 }
 
+// get all todos
 export async function GET() {
   try {
 
