@@ -30,7 +30,7 @@ export async function GET() {
       return NextResponse.json({ message: "Todo not found." }, { status: 404 });
     }
 
-    return NextResponse.json({ todo });
+    return NextResponse.json(todo);
 
   } catch (error) {
 
