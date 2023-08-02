@@ -2,7 +2,6 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Navbar from "./componets/Navbar";
-import Footer from "./componets/Footer";
 import { TodoContextProvider } from "../app/context/todoContext";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -26,7 +25,6 @@ export default function RootLayout({
         <TodoContextProvider>
           <Navbar />
           {children}
-          <Footer />
         </TodoContextProvider>
       </body>
     </html>

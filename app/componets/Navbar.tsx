@@ -1,7 +1,12 @@
+import navbar from '../scss/navbar.module.scss'
 
 const Navbar = () => {
   return (
-    <div>Navbar</div>
+    <header className={navbar.header}>
+      <nav >
+        Todo App NextJs 
+      </nav>
+    </header>
   )
 }
 

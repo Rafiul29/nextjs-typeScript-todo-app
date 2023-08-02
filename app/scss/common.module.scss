@@ -1,0 +1,16 @@
+$primary-color:#FF2E4C;
+$text-color:#FCFCFC;
+.error{
+  width: 100%;
+  background-color: $primary-color;
+  text-align: center;
+  padding: 1rem;
+  color: $text-color;
+}
+
+.loading{
+  font-size: 2rem;
+  font-weight:  bold;
+  text-align: center;
+  color: $text-color;
+}

@@ -1,0 +1,17 @@
+$primary-color: #005D98;
+
+.home_container{
+  background-color: #005D98;
+  width: 550px;
+  height: 750px;
+  margin: 0 auto;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0px 2px 2px 2px #0f5f91;
+}
+
+.home_item{
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}

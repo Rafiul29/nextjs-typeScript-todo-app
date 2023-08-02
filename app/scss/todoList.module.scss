@@ -1,0 +1,9 @@
+
+.todo_list{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 550px;
+  overflow: scroll;
+  padding: 0.8rem 0.3rem;
+}

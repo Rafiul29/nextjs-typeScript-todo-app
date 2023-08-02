@@ -3,6 +3,7 @@ import EditTodoFrom from '@/app/componets/EditTodoFrom';
 import axios from 'axios'
 import { useParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import common from "../../scss/common.module.scss"
 
 interface TodoData {
   id: string;
@@ -36,11 +37,11 @@ const EditTodo: React.FC = () => {
   // decide what to render
   let content=null;
   if (loading) {
-    content="Loading ....."
+    content=<div className={common.loading}>Loading .....</div>
   }
 
   if (error) {
-    content={error}
+    content=<div className={common.error}>{error}</div>
   }
 
   if(!loading && !error){

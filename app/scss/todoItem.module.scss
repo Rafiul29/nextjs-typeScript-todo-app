@@ -1,0 +1,31 @@
+$primary-color:#D5EAF5;
+
+$font-color:#020112;
+
+.todo_item{
+  background-color: $primary-color;
+  color: $font-color;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 3px;
+}
+
+.todo_links{
+display: flex;
+gap: 1.5rem;
+align-items: center;
+}
+
+.edit{
+  font-size: 1.5rem;
+  color: #005D98;
+  cursor: pointer;
+}
+.delete{
+  font-size: 1.5rem;
+  color: #FF2E4C;
+  cursor: pointer;
+  background-color: transparent;
+}

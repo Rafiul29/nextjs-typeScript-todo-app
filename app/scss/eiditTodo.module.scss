@@ -1,0 +1,48 @@
+$primary-color: #005D98;
+$secondary-color:aliceblue;
+
+.edit_form_container{
+  width: 450px;
+  margin: 0 auto;
+}
+
+.editTodo_form{
+  background-color:$secondary-color;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: 3px;
+}
+
+.input_item{
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.checkbox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input_filed{
+ font-size: 1.4rem;
+ background-color: $secondary-color
+}
+
+.button{
+  background-color:$primary-color;
+  font-size: 1.2rem;
+  padding: 0.8rem 0.5rem;
+  color: aliceblue;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.button:hover{
+  background-color: #116ca5;
+  transition: 0.5s ease-in-out;
+}

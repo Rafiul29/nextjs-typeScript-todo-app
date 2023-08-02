@@ -1,7 +1,9 @@
 "use client";
 
-import { use, useState } from "react";
+import { useState } from "react";
 import { useTodosContext } from "../hooks/useTodosContex";
+import style from "../scss/todo.module.scss";
+import common from "../scss/common.module.scss";
 
 const AddTodo = () => {
   const [title, setTitle] = useState("");
@@ -35,25 +37,34 @@ const AddTodo = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          onClick={() => setStatus(!status)}
-          checked={status}
-          type="checkbox" readOnly
-        />
-        <input
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-          type="text"
-          placeholder="What things to do?"
-        />
-        <button disabled={loading} type="submit">
-          Add task
+    <div className={style.form_container}>
+      <form onSubmit={handleSubmit} className={style.addtodo_form}>
+        <div className={style.input_item}>
+          <div className={style.checkbox}>
+            <input
+              onClick={() => setStatus(!status)}
+              checked={status}
+              type="checkbox"
+              readOnly
+              className={style.input_filed}
+            />
+          </div>
+          <div className={style.input_box}>
+            <input
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
+              type="text"
+              placeholder="What things to do?"
+              className={style.input_filed}
+            />
+          </div>
+        </div>
+        <button disabled={loading} type="submit" className={style.button}>
+          Add
         </button>
-        <p>{error}</p>
       </form>
+      {error && <p className={common.error}>{error}</p>}
     </div>
   );
 };

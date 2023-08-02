@@ -1,14 +1,16 @@
-import AddTodo from './componets/AddTodo'
-import TodoList from './componets/TodoList'
-import variables from './scss/variables.module.scss'
+import AddTodo from "./componets/AddTodo";
+import TodoList from "./componets/TodoList";
+import style from "./scss/home.module.scss";
 
 const HomePage = () => {
   return (
-    <div >
-      <AddTodo/>
-      <TodoList/>
+    <div className={style.home_container}>
+      <div className={style.home_item}>
+        <AddTodo />
+        <TodoList />
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;

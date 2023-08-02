@@ -1,54 +1,56 @@
-"use client"
+"use client";
 import { useEffect, useState } from "react";
 import TodoItem from "./TodoItem";
 import { useTodosContext } from "../hooks/useTodosContex";
+import style from "../scss/todoList.module.scss"
+import common from "../scss/common.module.scss"
 
 const TodoList = () => {
-  const [loading,setLoading]=useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
   // data fetch
-  const {todos,dispatch}=useTodosContext()
-  
+  const { todos, dispatch } = useTodosContext();
+
   // fetched data
-  useEffect(()=>{
-    const getAllTodo=async()=>{
-      try{
-        setLoading(true)
-        const res=await fetch('/api/todos');
-        const json= await res.json();
-        if(res.ok){
-          dispatch({type:"SET_TODOS",payload:json})
-        } 
+  useEffect(() => {
+    const getAllTodo = async () => {
+      try {
+        setLoading(true);
+        const res = await fetch("/api/todos");
+        const json = await res.json();
+        if (res.ok) {
+          dispatch({ type: "SET_TODOS", payload: json });
+        }
         setLoading(false);
-        setError("")
-      }catch(error){
-        setLoading(false)
-        setError("failed to fetched data")
+        setError("");
+      } catch (error) {
+        setLoading(false);
+        setError("failed to fetched data");
       }
-    }
-    getAllTodo()
-  },[dispatch])
+    };
+    getAllTodo();
+  }, [dispatch]);
 
   // decide what to render
-  let content=null
+  let content = null;
   if (loading) {
-    content="Loading........."
+    content = <div className={common.loading}>Loading.........</div>
   }
 
   if (error) {
-    content={error}
+    content = <div className={common.error}>{error}</div>
   }
 
-  if(!loading && !error && todos?.length>0){
-    content=todos.map((todo:any)=><TodoItem key={todo._id} todo={todo}/>)
+  if (!loading && !error && todos?.length > 0) {
+    content = todos.map((todo: any) => <TodoItem key={todo._id} todo={todo} />);
   }
-
+  
   return (
-    <>
-      {content}
-    </>
-  )
-}
+      <div className={style.todo_list}>
+        {content }
+       </div>
+  );
+};
 
 export default TodoList;
