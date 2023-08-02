@@ -3,16 +3,20 @@
 import React, { useState } from 'react'
 import variables from '../scss/variables.module.scss'
 import Link from 'next/link';
+import { useTodosContext } from '../hooks/useTodosContex';
+
 interface TodoItemProps{
   todo:any;
 }
 
 const TodoItem:React.FC<TodoItemProps> = ({todo}) => {
 
-  const [loading, setLoading] = useState(false);
+  const [loading,setLoading]=useState<boolean>(false)
   const [error, setError] = useState<string | null>(null);
-
   const {_id,title}=todo
+
+  const {dispatch}=useTodosContext()
+
   const handleDelete=async(id:string)=>{
     const res=await fetch(`/api/todos/${id}`,{
       method:"DELETE",
@@ -20,7 +24,15 @@ const TodoItem:React.FC<TodoItemProps> = ({todo}) => {
         "Content-type": "application/json"
       }
      })
-     const json=res.json()
+     const json =await res.json()
+     console.log(json)
+     if (!res.ok) {
+      setError("delete not successfull")
+    }
+    if(res.ok){
+    dispatch({type:"DELETE_TODO",payload:json})
+    }
+
   }
 
 

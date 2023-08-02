@@ -1,14 +1,21 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useTodosContext } from "../hooks/useTodosContex";
 const EditTodoFrom = ({ todo }: { todo: any }) => {
   const [title, setTitle] = useState(todo?.title);
   const [status, setStatus] = useState(todo?.status);
+  const [loading,setLoading]=useState<boolean>(false)
+  const [error, setError] = useState<string | null>(null);
 
+  // dispatch todo
+  const {dispatch}=useTodosContext();
+
+  // router
   const router = useRouter();
 
   const handleUpdate = async (e: any) => {
     e.preventDefault();
-
+      setLoading(true)
     const res = await fetch(`/api/todos/${todo._id}`, {
       method: "PUT",
       headers: {
@@ -16,8 +23,15 @@ const EditTodoFrom = ({ todo }: { todo: any }) => {
       },
       body: JSON.stringify({ title, status }),
     });
+    const json=await res.json()
+      if(!res.ok){
+        setLoading(false)
+        setError("update not successful")
+      }
     if (res.ok) {
-      console.log("todo was updated");
+      setLoading(false);
+      setError("")
+      dispatch({type:"UPDATE_TODO",payload:json})
       router.push("/");
     }
   };
@@ -33,7 +47,8 @@ const EditTodoFrom = ({ todo }: { todo: any }) => {
         <input onClick={() => setStatus(!status)} type="checkbox" id="status" />
         <label htmlFor="status"> status Changes</label>
       </div>
-      <button type="submit">Update</button>
+      <button disabled={loading} type="submit">Update</button>
+      <p>{error}</p>
     </form>
   );
 };

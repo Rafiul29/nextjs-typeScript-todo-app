@@ -4,7 +4,7 @@ import TodoItem from "./TodoItem";
 import { useTodosContext } from "../hooks/useTodosContex";
 
 const TodoList = () => {
-const [loading, setLoading] = useState(false);
+  const [loading,setLoading]=useState<boolean>(false)
   const [error, setError] = useState<string | null>(null);
 
   // data fetch
@@ -24,7 +24,7 @@ const [loading, setLoading] = useState(false);
         setError("")
       }catch(error){
         setLoading(false)
-        setError(" sevr is not ruuning")
+        setError("failed to fetched data")
       }
     }
     getAllTodo()

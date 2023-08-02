@@ -40,8 +40,8 @@ export async function PUT(request: Request, { params }: { params: any }) {
     }
     await connectMongoDB();
 
-    await Todo.findByIdAndUpdate(id, { title, status }, { new: true });
-    return NextResponse.json({ message: "Todo was updated" }, { status: 201 });
+   const todo= await Todo.findByIdAndUpdate(id, { title, status }, { new: true });
+    return NextResponse.json(todo);
 
   } catch (error) {
     return NextResponse.json(
@@ -63,8 +63,8 @@ export async function DELETE(request: Request, { params }: { params: any }) {
     }
 
     await connectMongoDB();
-    await Todo.findByIdAndRemove(id);
-    return NextResponse.json({ message: "Todo was deleted" }, { status: 200 });
+   const todo= await Todo.findByIdAndRemove(id);
+    return NextResponse.json(todo);
   } catch (error) {
     return NextResponse.json(
       { message: "Internal server error" },
