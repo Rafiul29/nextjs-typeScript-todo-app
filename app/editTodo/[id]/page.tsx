@@ -14,6 +14,7 @@ const EditTodo: React.FC = () => {
   const [todo,setTodo]=useState<TodoData | null>(null)
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
   const params = useParams()
   const {id}=params
 

@@ -1,4 +1,6 @@
-import React from 'react'
+"use client"
+
+import React, { useState } from 'react'
 import variables from '../scss/variables.module.scss'
 import Link from 'next/link';
 interface TodoItemProps{
@@ -6,16 +8,22 @@ interface TodoItemProps{
 }
 
 const TodoItem:React.FC<TodoItemProps> = ({todo}) => {
-  const {_id,title}=todo
 
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const {_id,title}=todo
   const handleDelete=async(id:string)=>{
-    await fetch(`/api/todos/${id}`,{
+    const res=await fetch(`/api/todos/${id}`,{
       method:"DELETE",
       headers:{
         "Content-type": "application/json"
       }
      })
+     const json=res.json()
   }
+
+
 
   return (
     <div>

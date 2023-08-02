@@ -5,11 +5,10 @@ import { NextResponse } from "next/server";
 // post a new todo
 export async function POST(request:Request) {
   try {
-
     const { title,status } = await request.json();
     await connectMongoDB();
-    await Todo.create({ title ,status});
-    return NextResponse.json({ message: "Todo Created" }, { status: 201 });
+   const todo= await Todo.create({ title ,status});
+    return NextResponse.json(todo);
 
   } catch (error) {
     return NextResponse.json(
@@ -22,9 +21,8 @@ export async function POST(request:Request) {
 // get all todos
 export async function GET() {
   try {
-
     await connectMongoDB();
-    const todo = await Todo.find();
+    const todo = await Todo.find().sort({ createdAt: -1 });
 
     if (!todo) {
       return NextResponse.json({ message: "Todo not found." }, { status: 404 });

@@ -1,50 +1,43 @@
 "use client"
 import { useEffect, useState } from "react";
-import Loading from "./Loading";
-import Error from "./Error";
 import TodoItem from "./TodoItem";
-import { useRouter } from "next/navigation";
+import { useTodosContext } from "../hooks/useTodosContex";
 
 const TodoList = () => {
-  const [todos,setTodos]=useState([])
-  const [loading, setLoading] = useState(false);
+const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const router = useRouter();
-
-  const getAllTodo=async()=>{
-    try{
-      setLoading(true);
-      const res=await fetch('/api/todos');
-      if(res.ok){
-        router.push("/");
-      } 
-      const data= await res.json();
-      setTodos(data)
-      setLoading(false);
-     
-    }catch(error){
-      setError('Error fetching user data');
-      setLoading(false);
-    }
-   
-  }
+  // data fetch
+  const {todos,dispatch}=useTodosContext()
+  
+  // fetched data
   useEffect(()=>{
+    const getAllTodo=async()=>{
+      try{
+        setLoading(true)
+        const res=await fetch('/api/todos');
+        const json= await res.json();
+        if(res.ok){
+          dispatch({type:"SET_TODOS",payload:json})
+        } 
+        setLoading(false);
+        setError("")
+      }catch(error){
+        setLoading(false)
+        setError(" sevr is not ruuning")
+      }
+    }
     getAllTodo()
-  },[])
+  },[dispatch])
 
   // decide what to render
   let content=null
   if (loading) {
-    content="Loading"
+    content="Loading........."
   }
 
   if (error) {
     content={error}
-  }
-
-  if(!loading && !error && todos?.length===0){
-    content="Todos Not Found"
   }
 
   if(!loading && !error && todos?.length>0){
