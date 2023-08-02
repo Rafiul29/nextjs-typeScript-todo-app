@@ -40,7 +40,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
 
   return (
     <div className={style.todo_item}>
-      <p className={`style.title  ${!status && `${style.status_false}`}`}>{title}</p>
+      <p className={style.title }>{title}</p>
       <div className={style.todo_links}>
         <Link href={`/editTodo/${_id}`} className={style.edit} >
           <FiEdit/>

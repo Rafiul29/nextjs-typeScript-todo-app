@@ -23,6 +23,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "libs/mongodb.tsx", "app/api/todos/route.tsx", "app/context/todoContext.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "libs/mongodb.tsx", "app/api/todos/route.tsx", "app/context/todoContext.js", "app/api/auth/[...nextauth]/route.tsx"],
   "exclude": ["node_modules"]
 }

@@ -16,7 +16,10 @@ $font-color:#020112;
 .title{
   font-size: 1.4rem;
   font-weight: bold;
+  background-color: red;
 }
+
+//  ${!status && `${style.status_false}`}`
 
 .todo_links{
 display: flex;
@@ -37,7 +40,7 @@ align-items: center;
 }
 
 // dynamic class
-.status_false::after{
+.status_false::before{
   content: "";
   position: absolute;
   width: 10%;
