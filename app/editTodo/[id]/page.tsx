@@ -36,14 +36,17 @@ const EditTodo: React.FC = () => {
 
   // decide what to render
   let content=null;
+
+  // loading
   if (loading) {
     content=<div className={common.loading}>Loading .....</div>
   }
-
+// error
   if (error) {
     content=<div className={common.error}>{error}</div>
   }
 
+  // update todo
   if(!loading && !error){
     content=<EditTodoFrom todo={todo}/>
   }

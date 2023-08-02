@@ -16,6 +16,7 @@ const EditTodoFrom = ({ todo }: { todo: any }) => {
   // router
   const router = useRouter();
 
+// update todo
   const handleUpdate = async (e: any) => {
     e.preventDefault();
     setLoading(true);
@@ -41,6 +42,7 @@ const EditTodoFrom = ({ todo }: { todo: any }) => {
 
   return (
     <div className={style.edit_form_container}>
+      {/* update form */}
       <form onSubmit={handleUpdate} className={style.editTodo_form}>
         <div className={style.input_item}>
           <div className={style.checkbox}>

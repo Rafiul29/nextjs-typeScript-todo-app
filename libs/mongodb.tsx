@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+// DataBase connection
 const connectMongoDB=()=>{
   try{
     mongoose.connect(process.env.MONGO_URI as string)

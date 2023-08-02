@@ -14,10 +14,13 @@ interface TodoItemProps {
 const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  const { _id, title } = todo;
+
+  // distructure todo
+  const { _id, title,status } = todo;
 
   const { dispatch } = useTodosContext();
 
+  // delete todo
   const handleDelete = async (id: string) => {
     const res = await fetch(`/api/todos/${id}`, {
       method: "DELETE",
@@ -26,7 +29,6 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
       },
     });
     const json = await res.json();
-    console.log(json);
     if (!res.ok) {
       setError("delete not successfull");
     }
@@ -35,17 +37,20 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
     }
   };
 
+
   return (
     <div className={style.todo_item}>
-      <p className={style.title}>{title}</p>
+      <p className={`style.title  ${!status && `${style.status_false}`}`}>{title}</p>
       <div className={style.todo_links}>
-        <Link href={`/editTodo/${_id}`} className={style.edit}>
-          <FiEdit />
+        <Link href={`/editTodo/${_id}`} className={style.edit} >
+          <FiEdit/>
         </Link>
-        <button onClick={() => handleDelete(_id)} className={style.delete}>
+        <button disabled={loading} onClick={() => handleDelete(_id)} className={style.delete}>
           <RiDeleteBin6Line />
         </button>
       </div>
+      {/* error */}
+      {error && <p>{error}</p>}
     </div>
   );
 };

@@ -4,7 +4,7 @@ interface Todos {
   title: string;
   status:boolean;
 }
-
+// todo schema
 const todoSchema = new mongoose.Schema<Todos>(
   {
     title:{

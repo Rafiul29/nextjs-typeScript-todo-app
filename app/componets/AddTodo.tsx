@@ -13,6 +13,7 @@ const AddTodo = () => {
 
   const { dispatch } = useTodosContext();
 
+// add todo
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const todo = { title, status };
@@ -38,6 +39,7 @@ const AddTodo = () => {
 
   return (
     <div className={style.form_container}>
+      {/* todo form */}
       <form onSubmit={handleSubmit} className={style.addtodo_form}>
         <div className={style.input_item}>
           <div className={style.checkbox}>
@@ -64,6 +66,7 @@ const AddTodo = () => {
           Add
         </button>
       </form>
+      {/* error */}
       {error && <p className={common.error}>{error}</p>}
     </div>
   );

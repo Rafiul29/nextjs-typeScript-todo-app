@@ -1,6 +1,6 @@
 $primary-color:#D5EAF5;
-
 $font-color:#020112;
+
 
 .todo_item{
   background-color: $primary-color;
@@ -10,6 +10,12 @@ $font-color:#020112;
   align-items: center;
   padding: 0.5rem;
   border-radius: 3px;
+  position: relative;
+}
+
+.title{
+  font-size: 1.4rem;
+  font-weight: bold;
 }
 
 .todo_links{
@@ -28,4 +34,16 @@ align-items: center;
   color: #FF2E4C;
   cursor: pointer;
   background-color: transparent;
+}
+
+// dynamic class
+.status_false::after{
+  content: "";
+  position: absolute;
+  width: 10%;
+  height: 2px;
+  left: 5%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  background-color: #005D98;
 }

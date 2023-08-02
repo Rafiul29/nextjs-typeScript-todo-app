@@ -1,6 +1,8 @@
 "use client"
 import { createContext,useReducer } from "react";
 
+
+
 const initialState = {
   todos: [],
 };
@@ -28,7 +30,10 @@ export const todosReducer=(state,action)=>{
       return{
         todos:[action.payload,...state.todos.filter((todo)=>todo._id!==existTodo._id)]
       } 
+    default:
+        return state;  
   }
+  
 }
 
 

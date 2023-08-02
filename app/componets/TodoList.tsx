@@ -12,7 +12,7 @@ const TodoList = () => {
   // data fetch
   const { todos, dispatch } = useTodosContext();
 
-  // fetched data
+  // fetched all todo
   useEffect(() => {
     const getAllTodo = async () => {
       try {
@@ -34,14 +34,17 @@ const TodoList = () => {
 
   // decide what to render
   let content = null;
+  
+  // loading 
   if (loading) {
     content = <div className={common.loading}>Loading.........</div>
   }
 
+  // error
   if (error) {
     content = <div className={common.error}>{error}</div>
   }
-
+    // map all todo 
   if (!loading && !error && todos?.length > 0) {
     content = todos.map((todo: any) => <TodoItem key={todo._id} todo={todo} />);
   }
