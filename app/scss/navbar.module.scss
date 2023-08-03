@@ -18,13 +18,14 @@ $primary-color: #005D98;
 .nav_logo{
   font-weight: bold;
   color: $primary-color;
-font-size: 2.5rem;
-font-weight: bold;
+  font-size: 2.5rem;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .navLinks{
   display: flex;
-  gap:2.5rem;
+  gap:2rem;
 }
 .signin{
   font-size: 1.5rem;
@@ -41,13 +42,14 @@ font-weight: bold;
 
 .logout{
   font-size: 1.5rem;
-  background-color: $primary-color;
+  background-color: #d53f0d;
   color: aliceblue;
   font-weight: bold;
   padding: 0.5rem 1rem;
   border-radius: 5px;
+  cursor: pointer;
   transition: 0.3s ease-in-out;
 }
 .logout:hover{
-  background-color: #0f6aa3;;
+  background-color: #d53f0d;
 }

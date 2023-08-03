@@ -1,4 +1,3 @@
-"use clinet";
 
 import "./globals.css";
 import type { Metadata } from "next";
@@ -6,7 +5,6 @@ import { Inter } from "next/font/google";
 import Navbar from "./componets/Navbar";
 import { TodoContextProvider } from "../app/context/todoContext";
 import { NextAuthProvider } from "./Provider";
-import { SessionProvider } from "next-auth/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,10 +18,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  session,
 }: {
   children: React.ReactNode;
-  session: any;
 }) {
   return (
     <html lang="en">

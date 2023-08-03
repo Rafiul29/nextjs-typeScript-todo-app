@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { useTodosContext } from "../hooks/useTodosContex";
 import style from "../scss/eiditTodo.module.scss";
 import common from "../scss/common.module.scss"
+import { useSession } from "next-auth/react";
 
 const EditTodoFrom = ({ todo }: { todo: any }) => {
   const [title, setTitle] = useState(todo?.title);
@@ -13,12 +14,21 @@ const EditTodoFrom = ({ todo }: { todo: any }) => {
   // dispatch todo
   const { dispatch } = useTodosContext();
 
+  // user session
+  const {data:session}=useSession()
+
   // router
   const router = useRouter();
 
 // update todo
   const handleUpdate = async (e: any) => {
     e.preventDefault();
+
+    if(!session){
+      router.push("/signin")
+      return;
+    }
+
     setLoading(true);
     const res = await fetch(`/api/todos/${todo._id}`, {
       method: "PUT",

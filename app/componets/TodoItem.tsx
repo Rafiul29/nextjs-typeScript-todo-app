@@ -6,6 +6,8 @@ import { useTodosContext } from "../hooks/useTodosContex";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import style from "../scss/todoItem.module.scss";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 interface TodoItemProps {
   todo: any;
@@ -15,13 +17,28 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
+
+  // session
+  const {data:session}=useSession()
+
+  // router
+  const router=useRouter()
+
   // distructure todo
   const { _id, title,status } = todo;
 
+  // 
   const { dispatch } = useTodosContext();
 
   // delete todo
   const handleDelete = async (id: string) => {
+      // check user authorization
+      if(!session){
+          router.push('/signin')
+          return;  
+      }
+      
+    setLoading(true);
     const res = await fetch(`/api/todos/${id}`, {
       method: "DELETE",
       headers: {
@@ -40,7 +57,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
 
   return (
     <div className={style.todo_item}>
-      <p className={style.title }>{title}</p>
+      <p className={`${status ? `${style.title_true}`:`${style.title_false}`}`}>{title}</p>
       <div className={style.todo_links}>
         <Link href={`/editTodo/${_id}`} className={style.edit} >
           <FiEdit/>

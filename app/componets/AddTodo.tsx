@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useTodosContext } from "../hooks/useTodosContex";
 import style from "../scss/todo.module.scss";
 import common from "../scss/common.module.scss";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const AddTodo = () => {
   const [title, setTitle] = useState("");
@@ -11,12 +13,27 @@ const AddTodo = () => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
+  // dispatch
   const { dispatch } = useTodosContext();
+
+  // router 
+  const router=useRouter();
+
+  // user session
+  const {data:session}=useSession() 
 
 // add todo
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const todo = { title, status };
+    if(!title){
+      setError("must be flied")
+    }
+    // check user authorizati
+    if(!session){
+      router.push("/signin")
+      return;
+    }
     setLoading(true);
     const res = await fetch("/api/todos", {
       method: "POST",
