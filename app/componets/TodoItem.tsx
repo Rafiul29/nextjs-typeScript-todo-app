@@ -59,7 +59,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
     <div className={style.todo_item}>
       <p className={`${status ? `${style.title_true}`:`${style.title_false}`}`}>{title}</p>
       <div className={style.todo_links}>
-        <Link href={`/editTodo/${_id}`} className={style.edit} >
+        <Link href={`/edit-todo/${_id}`} className={style.edit} >
           <FiEdit/>
         </Link>
         <button disabled={loading} onClick={() => handleDelete(_id)} className={style.delete}>

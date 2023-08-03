@@ -1,9 +1,10 @@
 "use client"
 import EditTodoFrom from '@/app/componets/EditTodoFrom';
 import axios from 'axios'
-import { useParams } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import common from "../../scss/common.module.scss"
+import { useSession } from 'next-auth/react';
 
 interface TodoData {
   id: string;
@@ -19,6 +20,10 @@ const EditTodo: React.FC = () => {
   const params = useParams()
   const {id}=params
 
+  const router=useRouter()
+
+  const {data:session}=useSession();
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -33,6 +38,16 @@ const EditTodo: React.FC = () => {
 
     fetchUserData();
   }, [id,setTodo]);
+
+
+
+  useEffect(()=>{
+    if(!session){
+     router.push("/")
+    }
+  },[router,session])
+
+ 
 
   // decide what to render
   let content=null;
