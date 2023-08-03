@@ -5,6 +5,17 @@
   max-height: 550px;
 }
 
+.todo_list_container::-webkit-scrollbar {
+  width:5px;
+  height: 100px;
+}
+.section::-webkit-scrollbar-track {
+  background-color: darkgrey;
+}
+
+.todo_list_container::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
 .todo_list{
   display: flex;
   flex-direction: column;
