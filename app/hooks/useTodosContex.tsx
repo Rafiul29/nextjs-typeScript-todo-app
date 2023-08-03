@@ -1,3 +1,4 @@
+"use client"
 import { useContext } from "react";
 import { TodoContext } from "../context/todoContext";
 
@@ -6,5 +7,5 @@ export const useTodosContext=()=>{
   if(!context){
     throw new Error("You must call useTodos inside a Todo contect")
   }
-  return context
+  return context;
 }

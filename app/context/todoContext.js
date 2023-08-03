@@ -1,7 +1,6 @@
-"use client"
+'use client'
+
 import { createContext,useReducer } from "react";
-
-
 
 const initialState = {
   todos: [],

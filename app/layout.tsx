@@ -28,14 +28,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className} suppressHydrationWarning={true}>
-        {/* <NextAuthProvider> */}
-        {/* <SessionProvider session={session}> */}
+        <NextAuthProvider>
           <TodoContextProvider>
             <Navbar />
             {children}
           </TodoContextProvider>
-        {/* </SessionProvider> */}
-        {/* </NextAuthProvider> */}
+        </NextAuthProvider>
       </body>
     </html>
   );
