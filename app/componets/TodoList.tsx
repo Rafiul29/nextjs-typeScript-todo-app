@@ -50,9 +50,12 @@ const TodoList = () => {
   }
   
   return (
-      <div className={style.todo_list}>
+    <div className={style.todo_list_container}>
+       <div className={style.todo_list}>
         {content }
        </div>
+    </div>
+     
   );
 };
 
